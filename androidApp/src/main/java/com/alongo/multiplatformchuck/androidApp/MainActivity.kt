@@ -1,20 +1,38 @@
 package com.alongo.multiplatformchuck.androidApp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.alongo.multiplatformchuck.shared.Greeting
-import android.widget.TextView
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.alongo.multiplatformchuck.androidApp.databinding.ActivityMainBinding
+import com.alongo.multiplatformchuck.androidApp.presentation.base.BaseActivity
+import com.alongo.multiplatformchuck.shared.data.network.ChuckNorrisJokesApi
+import com.alongo.multiplatformchuck.shared.di.kodein
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.kodein.di.instance
 
-fun greet(): String {
-    return Greeting().greeting()
-}
+class MainActivity : BaseActivity() {
 
-class MainActivity : AppCompatActivity() {
+    private val jokesApi by kodein.instance<ChuckNorrisJokesApi>()
+
+    private val binding by viewBinding(ActivityMainBinding::bind)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        CoroutineScope(Dispatchers.IO).launch {
+            getJokes()
+        }
+    }
+
+    suspend fun getJokes()  {
+        val response = jokesApi.getRandomJoke()
+        println(response.value)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            binding.textView.text = response.value
+        }
+
     }
 }
