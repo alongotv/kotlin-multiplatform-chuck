@@ -21,12 +21,20 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            getJokes()
+        loadJoke()
+
+        binding.buttonGetRandomJoke.setOnClickListener {
+            loadJoke()
         }
     }
 
-    suspend fun getJokes()  {
+    fun loadJoke() {
+        CoroutineScope(Dispatchers.IO).launch {
+            getJoke()
+        }
+    }
+
+    suspend fun getJoke()  {
         val response = jokesApi.getRandomJoke()
         println(response.value)
 
