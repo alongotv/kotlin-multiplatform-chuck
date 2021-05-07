@@ -7,4 +7,4 @@ The goal of this project is to create an application example I wished I had duri
 
 API provided by api.chucknorris.io
 
-By the way, Chuck Norris does not need to use expect/actual mechanism. His common code runs on all platforms!
+By the way, Chuck Norris does not use expect/actual mechanism. His common code runs on all platforms!
