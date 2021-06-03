@@ -1,6 +1,5 @@
-package com.alongo.multiplatformchuck.shared.domain.network
+package com.alongo.multiplatformchuck.shared.data.network
 
-import com.alongo.multiplatformchuck.shared.data.network.ChuckNorrisJokesApi
 import com.alongo.multiplatformchuck.shared.domain.entity.httpentities.jokes.Joke
 import io.ktor.client.*
 import io.ktor.client.request.*

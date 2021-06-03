@@ -1,4 +1,5 @@
 buildscript {
+    val kotlin_version by extra("1.5.0-release-764")
     repositories {
         gradlePluginPortal()
         jcenter()
@@ -7,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0")
-        classpath("com.android.tools.build:gradle:4.2.0")
+        classpath("com.android.tools.build:gradle:4.2.1")
     }
 }
 group = "com.alongo.multiplatformchuck"
