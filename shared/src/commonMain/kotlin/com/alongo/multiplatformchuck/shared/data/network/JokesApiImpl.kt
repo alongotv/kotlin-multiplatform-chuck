@@ -7,6 +7,6 @@ import io.ktor.client.request.*
 class JokesApiImpl(private val httpClient: HttpClient) : ChuckNorrisJokesApi {
 
     override suspend fun getRandomJoke(): Joke {
-        return httpClient.get(endpoint + "/random")
+        return httpClient GET "$endpoint/random"
     }
 }
