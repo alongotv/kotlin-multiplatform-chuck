@@ -1,14 +1,16 @@
 buildscript {
-    val kotlin_version by extra("1.5.0-release-764")
+
+    val kotlin_version = "1.6.10"
+
     repositories {
         gradlePluginPortal()
-        jcenter()
         google()
         mavenCentral()
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0")
-        classpath("com.android.tools.build:gradle:4.2.1")
+        classpath("com.android.tools.build:gradle:7.0.4")
+        classpath(kotlin("gradle-plugin", kotlin_version))
     }
 }
 group = "com.alongo.multiplatformchuck"
