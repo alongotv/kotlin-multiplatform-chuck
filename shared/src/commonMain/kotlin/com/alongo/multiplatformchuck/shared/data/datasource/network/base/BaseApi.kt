@@ -1,4 +1,4 @@
-package com.alongo.multiplatformchuck.shared.data.network.base
+package com.alongo.multiplatformchuck.shared.data.datasource.network.base
 
 import com.alongo.multiplatformchuck.shared.di.Injector
 import io.ktor.client.HttpClient
