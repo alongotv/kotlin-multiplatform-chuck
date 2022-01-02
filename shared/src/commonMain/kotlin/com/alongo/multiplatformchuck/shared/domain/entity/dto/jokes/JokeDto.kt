@@ -1,10 +1,10 @@
-package com.alongo.multiplatformchuck.shared.domain.entity.httpentities.jokes
+package com.alongo.multiplatformchuck.shared.domain.entity.dto.jokes
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Joke(
+data class JokeDto(
     val categories: List<String>,
     @SerialName("created_at")
     val createdAt: String,
