@@ -4,7 +4,7 @@ import io.github.aakira.napier.Napier
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-class DefaultDispatcherProvider: DispatcherProvider {
+class NativeDispatcherProvider: DispatcherProvider {
 
     override fun io(): CoroutineDispatcher {
         Napier.w("IO dispatcher is not available on iOS platform, using Default")
@@ -16,16 +16,7 @@ class DefaultDispatcherProvider: DispatcherProvider {
         return Dispatchers.Main
     }
 
-    override fun default(): CoroutineDispatcher {
-        return Dispatchers.Default
-    }
-
-    override fun unconfined(): CoroutineDispatcher {
-        return Dispatchers.Unconfined
-
-    }
-
-    override fun main(): CoroutineDispatcher {
-        return Dispatchers.Main
-    }
+    override fun default(): CoroutineDispatcher = Dispatchers.Default
+    override fun unconfined(): CoroutineDispatcher = Dispatchers.Unconfined
+    override fun main(): CoroutineDispatcher = Dispatchers.Main
 }
