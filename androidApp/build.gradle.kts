@@ -16,12 +16,14 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.2")
-    implementation("org.kodein.di:kodein-di-framework-android-x:7.0.0")
+    implementation("org.kodein.di:kodein-di-framework-android-x:7.10.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10")
     implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.6")
 
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.6.10")
 }
+
 android {
     compileSdk = 31
     defaultConfig {
