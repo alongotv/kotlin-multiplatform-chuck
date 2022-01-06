@@ -3,7 +3,7 @@ package com.alongo.multiplatformchuck.shared.common.dispatchers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-class DefaultDispatcherProvider : DispatcherProvider {
+class AndroidDispatcherProvider : DispatcherProvider {
     override fun io(): CoroutineDispatcher = Dispatchers.IO
 
     override fun immediate(): CoroutineDispatcher = Dispatchers.Main.immediate
