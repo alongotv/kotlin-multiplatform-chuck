@@ -20,6 +20,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10")
     implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.6")
+    implementation("io.ktor:ktor-client-logging:1.6.7")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.6.10")
 }

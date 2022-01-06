@@ -35,6 +35,8 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("io.ktor:ktor-client-cio:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+
                 implementation("org.kodein.di:kodein-di:7.7.0")
                 implementation(kotlin("reflect"))
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
