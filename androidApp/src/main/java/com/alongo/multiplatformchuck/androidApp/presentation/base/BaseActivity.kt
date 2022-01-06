@@ -1,12 +1,20 @@
 package com.alongo.multiplatformchuck.androidApp.presentation.base
 
+import android.os.Bundle
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
-import com.alongo.multiplatformchuck.shared.di.Injector
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import org.kodein.di.DI
 import org.kodein.di.DIAware
 
 open class BaseActivity : AppCompatActivity(), DIAware {
+    override lateinit var di: DI
+    protected val activityScope = CoroutineScope(Dispatchers.Main.immediate)
 
-    override val di by lazy {
-        Injector.kodeinContainer
+    @CallSuper
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        di = (applicationContext as DIAware).di
     }
 }
