@@ -8,6 +8,6 @@ import org.kodein.di.singleton
 
 val mainViewModelModule = DI.Module("MainViewModelModule") {
     bind<MainViewModel>() with singleton {
-        MainViewModel(instance("Default"), instance())
+        MainViewModel(instance(), instance())
     }
 }

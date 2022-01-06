@@ -8,7 +8,7 @@ import org.kodein.di.instance
 import org.kodein.di.singleton
 
 val dispatcherProviderModule = DI.Module("DispatcherProviderModule") {
-    bind<DispatcherProvider>("Default") with singleton {
+    bind<DispatcherProvider>() with singleton {
         instance<DispatcherProviderFactory>().createDispatcherProvider()
     }
 }
