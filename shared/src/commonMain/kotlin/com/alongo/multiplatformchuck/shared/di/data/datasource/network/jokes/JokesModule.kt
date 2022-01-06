@@ -4,10 +4,11 @@ import com.alongo.multiplatformchuck.shared.data.datasource.network.jokes.JokesE
 import com.alongo.multiplatformchuck.shared.data.datasource.network.jokes.JokesEndpointImpl
 import org.kodein.di.DI
 import org.kodein.di.bind
+import org.kodein.di.instance
 import org.kodein.di.singleton
 
 val jokesModule = DI.Module("JokesModule") {
     bind<JokesEndpoint>() with singleton {
-        JokesEndpointImpl()
+        JokesEndpointImpl(dispatcherProvider = instance())
     }
 }

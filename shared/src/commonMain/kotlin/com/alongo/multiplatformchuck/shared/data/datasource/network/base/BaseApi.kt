@@ -10,24 +10,28 @@ import io.ktor.http.Url
 import kotlinx.coroutines.withContext
 import org.kodein.di.instance
 
-abstract class BaseApi {
+abstract class BaseApi(val dispatcherProvider: DispatcherProvider) {
 
     abstract val baseUrl: String
     val httpClient: HttpClient by Injector.kodeinContainer.instance()
-    val dispatcherProvider: DispatcherProvider by Injector.kodeinContainer.instance()
 
     suspend inline fun <reified T : Any> get(
         endpoint: String,
         crossinline block: HttpRequestBuilder.() -> Unit = {}
-    ): T =
-        withContext(dispatcherProvider.io()) {
-            httpClient.get(url = Url(baseUrl + endpoint), block = block)
-        }
+    ): T = withContext(dispatcherProvider.io()) {
+        httpClient.get(
+            url = Url(baseUrl + endpoint),
+            block = block
+        )
+    }
 
     suspend inline fun <reified T : Any> post(
         endpoint: String,
         crossinline block: HttpRequestBuilder.() -> Unit = {}
     ): T = withContext(dispatcherProvider.io()) {
-        httpClient.post(url = Url(baseUrl + endpoint), block = block)
+        httpClient.post(
+            url = Url(baseUrl + endpoint),
+            block = block
+        )
     }
 }
