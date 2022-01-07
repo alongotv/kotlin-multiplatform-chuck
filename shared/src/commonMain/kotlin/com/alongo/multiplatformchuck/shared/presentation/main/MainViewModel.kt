@@ -5,10 +5,7 @@ import com.alongo.multiplatformchuck.shared.domain.entity.display.jokes.DisplayJ
 import com.alongo.multiplatformchuck.shared.domain.entity.dto.jokes.JokeDto
 import com.alongo.multiplatformchuck.shared.domain.usecase.joke.get.GetRandomJokeUseCase
 import com.alongo.multiplatformchuck.shared.presentation.base.BaseViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -16,17 +13,21 @@ class MainViewModel(
     private val getRandomJokeUseCase: GetRandomJokeUseCase
 ): BaseViewModel(dispatchers) {
 
-    private val _jokes = MutableSharedFlow<DisplayJoke>()
-    val jokes = _jokes.asSharedFlow()
+    private val _jokes = MutableStateFlow<DisplayJoke?>(null)
+    val jokes = _jokes.asStateFlow().filterNotNull()
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
+
+    init {
+        getRandomJoke()
+    }
 
     fun didTapGetRandomJokeButton() {
         getRandomJoke()
     }
 
-    fun getRandomJoke() {
+    private fun getRandomJoke() {
         viewModelScope.launch {
             _isLoading.emit(true)
             val joke = getRandomJokeUseCase()
