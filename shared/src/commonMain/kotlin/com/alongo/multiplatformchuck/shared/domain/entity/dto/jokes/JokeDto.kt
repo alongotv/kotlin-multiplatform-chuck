@@ -1,5 +1,6 @@
 package com.alongo.multiplatformchuck.shared.domain.entity.dto.jokes
 
+import com.alongo.multiplatformchuck.shared.domain.entity.dto.Dto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -15,4 +16,4 @@ data class JokeDto(
     val updatedAt: String,
     val url: String,
     val value: String
-)
+): Dto
