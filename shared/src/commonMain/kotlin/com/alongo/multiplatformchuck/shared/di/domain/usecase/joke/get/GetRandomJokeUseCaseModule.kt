@@ -9,6 +9,6 @@ import org.kodein.di.singleton
 
 val getRandomJokeUseCaseModule = DI.Module("GetRandomJokeUseCaseModule") {
     bind<GetRandomJokeUseCase>() with singleton {
-        GetRandomJokeUseCaseImpl(instance())
+        GetRandomJokeUseCaseImpl(instance(), instance())
     }
 }
