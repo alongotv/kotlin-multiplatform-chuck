@@ -1,5 +1,6 @@
 package com.alongo.multiplatformchuck.shared.di.data.datasource.network
 
+import com.alongo.multiplatformchuck.shared.common.AppConfig
 import com.alongo.multiplatformchuck.shared.common.KtorClientEngine
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
@@ -26,7 +27,11 @@ val httpClientModule = DI.Module("HttpClientModule") {
                         Napier.v(tag = "HTTP Client", message = message)
                     }
                 }
-                level = LogLevel.INFO
+                level = if (AppConfig.isDebugBuild()) {
+                    LogLevel.ALL
+                } else {
+                    LogLevel.NONE
+                }
             }
         }
     }
