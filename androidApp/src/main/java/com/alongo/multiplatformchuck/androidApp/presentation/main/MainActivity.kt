@@ -1,5 +1,6 @@
 package com.alongo.multiplatformchuck.androidApp.presentation.main
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -52,10 +53,17 @@ class MainActivity : BaseActivity() {
 
     private fun subscribeToJokes() {
         activityScope.launch {
-            viewModel.jokes.collect {
-                binding.textViewJokeText.text = it.value
+            viewModel.jokes.collect { joke ->
+                binding.textViewJokeText.text = joke.jokeText
+                joke.jokeBackgroundColor.run {
+                    setViewBackgroundColor(r.toInt(), g.toInt(), b.toInt())
+                }
             }
         }
+    }
+
+    private fun setViewBackgroundColor(r: Int, g: Int, b: Int) {
+        binding.mainView.setBackgroundColor(Color.rgb(r, g, b))
     }
 
     private fun subscribeToErrors() {

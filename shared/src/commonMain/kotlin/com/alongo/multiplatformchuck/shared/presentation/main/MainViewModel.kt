@@ -1,6 +1,7 @@
 package com.alongo.multiplatformchuck.shared.presentation.main
 
 import com.alongo.multiplatformchuck.shared.common.dispatchers.DispatcherProvider
+import com.alongo.multiplatformchuck.shared.domain.entity.display.jokes.DisplayJoke
 import com.alongo.multiplatformchuck.shared.domain.entity.dto.jokes.JokeDto
 import com.alongo.multiplatformchuck.shared.domain.usecase.joke.get.GetRandomJokeUseCase
 import com.alongo.multiplatformchuck.shared.presentation.base.BaseViewModel
@@ -15,7 +16,7 @@ class MainViewModel(
     private val getRandomJokeUseCase: GetRandomJokeUseCase
 ): BaseViewModel(dispatchers) {
 
-    private val _jokes = MutableSharedFlow<JokeDto>()
+    private val _jokes = MutableSharedFlow<DisplayJoke>()
     val jokes = _jokes.asSharedFlow()
 
     private val _isLoading = MutableStateFlow(false)
@@ -34,7 +35,7 @@ class MainViewModel(
         }
     }
 
-    private suspend fun offerJoke(joke: JokeDto) {
+    private suspend fun offerJoke(joke: DisplayJoke) {
         _jokes.emit(joke)
     }
 }
