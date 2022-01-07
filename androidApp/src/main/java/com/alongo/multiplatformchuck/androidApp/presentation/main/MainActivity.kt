@@ -31,20 +31,21 @@ class MainActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         subscribeToJokes()
+        subscribeToErrors()
     }
 
     private fun subscribeToJokes() {
         activityScope.launch {
-            launch {
-                viewModel.jokes.collect {
-                    binding.textView.text = it.value
-                }
+            viewModel.jokes.collect {
+                binding.textView.text = it.value
             }
-            launch {
-                viewModel.errors.collect {
-                    println("$it")
-                    Toast.makeText(this@MainActivity, it.message, Toast.LENGTH_LONG).show()
-                }
+        }
+    }
+
+    private fun subscribeToErrors() {
+        activityScope.launch {
+            viewModel.errors.collect {
+                Toast.makeText(this@MainActivity, "$it", Toast.LENGTH_LONG).show()
             }
         }
     }
