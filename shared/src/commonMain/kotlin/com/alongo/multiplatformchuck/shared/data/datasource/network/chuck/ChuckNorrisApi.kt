@@ -1,4 +1,4 @@
-package com.alongo.multiplatformchuck.shared.data.datasource.network
+package com.alongo.multiplatformchuck.shared.data.datasource.network.chuck
 
 import com.alongo.multiplatformchuck.shared.common.dispatchers.DispatcherProvider
 import com.alongo.multiplatformchuck.shared.data.datasource.network.base.BaseApi
