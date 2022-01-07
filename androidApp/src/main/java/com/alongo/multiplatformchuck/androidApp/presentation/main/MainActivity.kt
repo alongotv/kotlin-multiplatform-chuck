@@ -8,8 +8,10 @@ import com.alongo.multiplatformchuck.androidApp.databinding.ActivityMainBinding
 import com.alongo.multiplatformchuck.androidApp.presentation.base.BaseActivity
 import com.alongo.multiplatformchuck.androidApp.utils.extensions.setIsVisible
 import com.alongo.multiplatformchuck.shared.presentation.main.MainViewModel
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.kodein.di.instance
 
 class MainActivity : BaseActivity() {
@@ -39,9 +41,11 @@ class MainActivity : BaseActivity() {
     private fun subscribeToLoadingState() {
         activityScope.launch {
             viewModel.isLoading.collect { isLoading ->
-                binding.progressBar.setIsVisible(isLoading)
-                binding.textViewJokeText.setIsVisible(!isLoading)
-                binding.buttonGetRandomJoke.isEnabled = !isLoading
+                withContext(NonCancellable) {
+                    binding.progressBar.setIsVisible(isLoading)
+                    binding.textViewJokeText.setIsVisible(!isLoading)
+                    binding.buttonGetRandomJoke.isEnabled = !isLoading
+                }
             }
         }
     }
