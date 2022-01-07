@@ -6,6 +6,7 @@ import com.alongo.multiplatformchuck.shared.di.androidModule
 import com.alongo.multiplatformchuck.shared.di.data.dataModule
 import com.alongo.multiplatformchuck.shared.di.domain.domainModule
 import com.alongo.multiplatformchuck.shared.di.presentation.presentationModule
+import com.alongo.multiplatformchuck.shared.di.utils.utilsModule
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.x.androidXModule
@@ -23,7 +24,7 @@ class App : Application(), DIAware {
             import(androidXModule(this@App))
             import(androidModule)
             importAll(
-                dataModule, domainModule, presentationModule
+                dataModule, domainModule, presentationModule, utilsModule
             )
         }
     }
