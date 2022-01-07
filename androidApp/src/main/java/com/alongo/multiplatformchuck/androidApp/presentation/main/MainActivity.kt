@@ -25,8 +25,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.getRandomJoke()
-
         binding.buttonGetRandomJoke.setOnClickListener {
             viewModel.didTapGetRandomJokeButton()
         }
@@ -46,6 +44,9 @@ class MainActivity : BaseActivity() {
                     binding.progressBar.setIsVisible(isLoading)
                     binding.textViewJokeText.setIsVisible(!isLoading)
                     binding.buttonGetRandomJoke.isEnabled = !isLoading
+                    if (isLoading) {
+                        setViewBackgroundColor(255, 255, 255)
+                    }
                 }
             }
         }
