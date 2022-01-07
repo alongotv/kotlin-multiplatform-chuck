@@ -26,18 +26,25 @@ class MainActivity : BaseActivity() {
         binding.buttonGetRandomJoke.setOnClickListener {
             viewModel.getRandomJoke()
         }
-
-        subscribe()
     }
 
-    private fun subscribe() {
-        activityScope.launch {
-            viewModel.jokes.collect {
-                binding.textView.text = it.value
-            }
+    override fun onResume() {
+        super.onResume()
+        subscribeToJokes()
+    }
 
-            viewModel.errors.collect {
-                Toast.makeText(this@MainActivity, it.message, Toast.LENGTH_LONG).show()
+    private fun subscribeToJokes() {
+        activityScope.launch {
+            launch {
+                viewModel.jokes.collect {
+                    binding.textView.text = it.value
+                }
+            }
+            launch {
+                viewModel.errors.collect {
+                    println("$it")
+                    Toast.makeText(this@MainActivity, it.message, Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
