@@ -14,7 +14,7 @@ abstract class BaseViewModel(val dispatchers: DispatcherProvider) {
     val errors = _errors.asSharedFlow()
 
     protected val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(dispatchers.immediate()).launch {
             _errors.emit(throwable)
         }
     }
